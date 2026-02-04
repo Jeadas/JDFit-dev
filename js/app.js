@@ -300,9 +300,7 @@ const App = {
         document.getElementById('currentSet').textContent = this.currentSet;
         document.getElementById('totalSets').textContent = current.sets;
 
-        // Weight input
-        const weightInput = document.getElementById('currentWeight');
-        weightInput.value = (current.weights && current.weights[this.currentSet - 1]) || '';
+        // Weight input removed
 
         // Set target display
         const targetEl = document.getElementById('setTarget');
@@ -343,12 +341,6 @@ const App = {
             Timer.stop();
             this.advanceWorkout();
         } else {
-            // Save weight
-            const weight = document.getElementById('currentWeight').value;
-            if (weight) {
-                current.weights[this.currentSet - 1] = weight;
-            }
-
             current.completedSets++;
             this.currentSession.totalSets++;
             
@@ -360,8 +352,7 @@ const App = {
                 };
             }
             this.currentSession.exercises[this.currentExerciseIndex].sets.push({
-                reps: current.reps,
-                weight: weight || null
+                reps: current.reps
             });
 
             if (current.completedSets < current.sets) {
